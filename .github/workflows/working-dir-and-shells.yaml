@@ -1,0 +1,24 @@
+name: working-dir-and-shells
+on: [push]
+
+jobs:
+    display-wd-info-ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display info ubuntu
+              run: |
+                pwd
+                ls -a
+                echo $GITHUB_SHA
+                echo $GITHUB_REPOSITORY
+                echo $GITHUB_WORKSPACE
+    display-wd-info-windows:
+        runs-on: windows-latest
+        steps:
+            - name: Display info windows
+              run: |
+                Get-Location
+                Get-ChildItem -Force
+                Write-Output $env:GITHUB_SHA
+                Write-Output $env:GITHUB_REPOSITORY
+                Write-Output $env:GITHUB_WORKSPACE
