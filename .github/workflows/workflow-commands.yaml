@@ -8,11 +8,23 @@ jobs:
             - name: Setting an error message
               run: echo "::error::Missing semi-colon"
             - name: Setting an error message with params
-              run: echo "::error title=Debug title, file=app.js, line=2, endLine, col=4, endColumn=7::Missing semi-colon"
+              run: echo "::error title=Error title, file=app.js, line=2, endLine, col=4, endColumn=7::Missing semi-colon"
             - name: Setting an debug message with params
               run: echo "::debug title=Debug title, file=app.js, line=2, endLine, col=4, endColumn=7::Missing semi-colon"
             - name: Setting an warning message with params
               run: echo "::warning title=Warning title, file=app.js, line=2, endLine, col=4, endColumn=7::Missing semi-colon"
             - name: Setting an notice message with params
               run: echo "::notice title=Notice title, file=app.js, line=2, endLine, col=4, endColumn=7::Missing semi-colon"
+            - name: Group of logs
+              run: |
+                echo "::group::Group of logs"
+                echo "This is a log inside a group"
+                echo "This is another log inside the group"
+                echo "::endgroup::"
+            - name: Masking a secret
+              # This will mask the output in the logs
+              run: echo "::add-mask::Secret String"
+            - name: Echoing a secret
+              run: echo "Secret String"
+            
                    
