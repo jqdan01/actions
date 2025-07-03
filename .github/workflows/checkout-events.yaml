@@ -1,0 +1,12 @@
+name: Checkout Events
+on: [push, pull_request, issues]
+
+jobs:
+    checkout-on-push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check Before
+              run: |
+                echo $GITHUB_SHA
+                echo $GITHUB_REF
+            - uses: actions/checkout@v4
