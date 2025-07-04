@@ -1,0 +1,26 @@
+name: Branch Workflow
+ 
+on:
+    push:
+        branches:
+            - "feature/*" # matches feature/featA, feature/featB
+            - "feature/*/*" # matches feature/featA/featB
+            - "!hotfix/*" # excludes this pattern
+        # branches-ignore: # cannot be used with branches: in the same event
+        #     - "test/*"
+        tags:
+            - v1.* # match v1.1, v1.1.2
+        paths:
+            - "**.js"
+            - "!app.js" # excluding this pattern to trigger the event
+
+jobs:
+    checkout-branch: 
+        uses: github/checkout@v4
+    run-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                echo "Running tests"
+
+    
